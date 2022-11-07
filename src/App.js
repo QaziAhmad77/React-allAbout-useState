@@ -27,7 +27,7 @@ function App() {
     })
     setTimeout(()=>{
       setAlert(null);
-    })
+    },1500)
   }
   const toggleMode = ()=>{
     if(mode === "light"){
@@ -48,6 +48,7 @@ function App() {
     <Router>
       <Navbar title="TextUtils" about="About Us" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert}/>
+      <Clock mode={mode}/>
       {/* <Navbar /> */}
       <Switch>
         <Route path="/about">
@@ -60,7 +61,6 @@ function App() {
       <div className="container">
         <Increment heading="Click here" />
       </div>
-      <Clock mode={mode}/>
       </Router>
     </>
   );
