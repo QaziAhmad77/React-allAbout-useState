@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 export default function TextForm(props) {
   const [text, setText] = useState(""); // text a variable while setText is a function which update our text value. useState return 2 items. one is current data and other is updated function.
   // text = "new text"; // Wrong way to change the state
@@ -39,7 +39,7 @@ export default function TextForm(props) {
   };
   const removeExtraSpace = () => {
     let newText = text.split(/[ ]+/);
-    setText(newText.join(" "))
+    setText(newText.join(" "));
     props.showAlert("Done", "Success");
   };
   const handleOnChange = (event) => {
@@ -48,41 +48,59 @@ export default function TextForm(props) {
   };
   return (
     <>
-      <div disabled={text.length===0} className="container" style={{color: props.mode==="dark"?"white":"black"}}>
+      <div disabled={text.length === 0} className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
-          <textarea className="form-control" value={text} placeholder="Enter text here" onChange={handleOnChange} style={{backgroundColor: props.mode==="dark"?"grey":"white", color: props.mode==="dark"?"white":"black"}} id="myBox" rows="8"></textarea>
+          <textarea
+            className="form-control"
+            value={text}
+            placeholder="Enter text here"
+            onChange={handleOnChange}
+            style={{ backgroundColor: props.mode === "dark" ? "grey" : "white", color: props.mode === "dark" ? "white" : "black" }}
+            id="myBox"
+            rows="8"></textarea>
         </div>
-        <button disabled={text.length===0}  className="btn btn-primary" onClick={handleUpClick}>
+        <button disabled={text.length === 0} className="btn btn-primary" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
+        <button disabled={text.length >= 5} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
           Clear text
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleFilterClick}>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleFilterClick}>
           Filter text
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleStartWithClick}>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleStartWithClick}>
           Filter Startwith text
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
           Copy text
         </button>
-        <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={removeExtraSpace}>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={removeExtraSpace}>
           Remove extraSpace
         </button>
       </div>
-      <div className="container my-2" style={{color: props.mode==="dark"?"white":"black"}}>
+      <div className="container my-2" style={{ color: props.mode === "dark" ? "white" : "black" }}>
         <h2>Your text summary</h2>
         <p>
-          {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters
+          {
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          Minutes read
+        </p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter something to preview it here"}</p>
+        <p>{text.length > 0 ? text : "Enter something to preview it here"}</p>
       </div>
     </>
   );
